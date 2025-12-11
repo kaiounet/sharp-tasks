@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using sharp_tasks.Validation;
+using sharp_tasks.Enums;
 
 namespace sharp_tasks.ViewModels.Task;
 

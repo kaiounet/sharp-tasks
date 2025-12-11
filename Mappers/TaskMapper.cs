@@ -33,6 +33,18 @@ public class TaskMapper
         return taskDisplayVMs;
     }
 
+    public static Models.Task GetTaskFromTaskEditVM(TaskEditVM model)
+    {
+        return new Models.Task
+        {
+            Label = model.Label,
+            Description = model.Description,
+            LimiteDate = model.LimiteDate,
+            TaskState = model.TaskState
+        };
+
+    }
+
     public static TaskEditVM GetTaskEditVMFromTask(Models.Task task)
     {
         return new TaskEditVM
