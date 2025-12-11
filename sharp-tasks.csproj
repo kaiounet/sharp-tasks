@@ -7,4 +7,9 @@
     <RootNamespace>sharp_tasks</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Filters/" />
+    <Folder Include="Views/Authentification/" />
+  </ItemGroup>
+
 </Project>

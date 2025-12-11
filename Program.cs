@@ -1,4 +1,5 @@
 using sharp_tasks.Services;
+using sharp_tasks.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISessionManagerService, SessionManagerService>();
+builder.Services.AddScoped<IAuthentificationService, AuthentificationService>();
+builder.Services.AddScoped<AuthentificationFilter>();
 builder.Services.AddSession();
 
 var app = builder.Build();

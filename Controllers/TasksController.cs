@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using sharp_tasks.Enums;
+using sharp_tasks.Filters;
 using sharp_tasks.Helpers;
 using sharp_tasks.Mappers;
 using sharp_tasks.Services;
@@ -8,6 +9,7 @@ using System.Text.Json;
 
 namespace sharp_tasks.Controllers;
 
+[TypeFilter(typeof(AuthentificationFilter))]
 public class TasksController : Controller
 {
     private readonly ISessionManagerService _sessionManager;
@@ -42,7 +44,7 @@ public class TasksController : Controller
         }
 
         task = TaskMapper.GetTaskFromTaskAddVM(model);
-        tasks = _sessionManager.Get<List<Models.Task>>("tasks");
+        tasks = _sessionManager.Get<List<Models.Task>>("tasks") ?? new List<Models.Task>();
 
         tasks.Add(task);
         _sessionManager.Add("tasks", tasks);

@@ -21,6 +21,17 @@ public class SessionManagerService : ISessionManagerService
     public T Get<T>(string key)
     {
         var httpContext = _httpContextAccessor.HttpContext;
-        return JsonSerializer.Deserialize<T>(httpContext.Session.GetString(key) ?? "[]");
+        var sessionValue = httpContext.Session.GetString(key);
+        if (sessionValue == null)
+        {
+            return default(T);
+        }
+        return JsonSerializer.Deserialize<T>(sessionValue);
+    }
+
+    public void Remove(string key)
+    {
+        var httpContext = _httpContextAccessor.HttpContext;
+        httpContext.Session.Remove(key);    
     }
 }

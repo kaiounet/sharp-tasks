@@ -19,6 +19,7 @@ public class TaskMapper
     public static List<TaskDisplayVM> GetTaskDisplayVMsFromTasks(List<Models.Task> tasks)
     {
         List<TaskDisplayVM> taskDisplayVMs = new List<TaskDisplayVM>();
+        if (tasks == null) { return taskDisplayVMs; }
         foreach (Models.Task task in tasks)
         {
             TaskDisplayVM taskDisplayVM = new TaskDisplayVM
