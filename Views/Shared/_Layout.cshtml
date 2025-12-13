@@ -1,7 +1,8 @@
-﻿@using sharp_tasks.Services
+﻿@using sharp_tasks.Constants
+@using sharp_tasks.Services
 @inject IAuthenticationProvider AuthenticationService
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="@(ViewBag.Theme ?? "light")">
+<html lang="en" data-bs-theme="@(ViewBag.Theme ?? ThemeConstants.LightTheme)">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,13 +15,13 @@
 <body>
     <header>
         @{
-            var theme = ViewBag.Theme ?? "light";
-            var isDark = theme == "dark";
+            var theme = ViewBag.Theme ?? ThemeConstants.LightTheme;
+            var isDark = theme == ThemeConstants.DarkTheme;
             var navbarClass = isDark ? "navbar-dark bg-dark" : "navbar-light bg-white";
         }
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm @navbarClass border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Task" asp-action="Index">sharp_tasks</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Tasks" asp-action="Index">sharp_tasks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,7 +32,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Theme" asp-action="Toggle">
-                                Switch to @((ViewBag.Theme ?? "light") == "light" ? "Dark" : "Light")
+                                Switch to @((ViewBag.Theme ?? ThemeConstants.LightTheme) == ThemeConstants.LightTheme ? "Dark" : "Light")
                             </a>
                         </li>
                         @if (AuthenticationService.IsAuthenticated())
@@ -60,5 +61,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

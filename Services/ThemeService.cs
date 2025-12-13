@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Http;
+using sharp_tasks.Constants;
 
 namespace sharp_tasks.Services;
 
 public class ThemeService : IThemeProvider
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private const string DefaultTheme = "light";
-    private const string CookieName = "theme";
 
     public ThemeService(IHttpContextAccessor httpContextAccessor)
     {
@@ -16,10 +15,13 @@ public class ThemeService : IThemeProvider
     public string GetTheme()
     {
         var httpContext = _httpContextAccessor.HttpContext;
-        if (httpContext?.Request.Cookies.TryGetValue(CookieName, out var cookieTheme) == true)
+        if (httpContext?.Request.Cookies.TryGetValue(ThemeConstants.CookieName, out var cookieTheme) == true)
         {
-            return cookieTheme;
+            if (cookieTheme == ThemeConstants.LightTheme || cookieTheme == ThemeConstants.DarkTheme)
+            {
+                return cookieTheme;
+            }
         }
-        return DefaultTheme;
+        return ThemeConstants.LightTheme;
     }
 }
