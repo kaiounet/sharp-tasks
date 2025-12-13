@@ -25,12 +25,7 @@ public class ThemeController : Controller
             Expires = DateTimeOffset.Now.AddYears(1)
         });
 
-        // Redirect back to the referring page or home
-        var referer = Request.Headers["Referer"].ToString();
-        if (string.IsNullOrEmpty(referer))
-        {
-            return RedirectToAction("Index", "Tasks");
-        }
-        return Redirect(referer);
+        // Redirect to the home/tasks page for safety
+        return RedirectToAction("Index", "Tasks");
     }
 }
