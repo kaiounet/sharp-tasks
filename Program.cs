@@ -9,6 +9,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISessionManagerService, SessionManagerService>();
 builder.Services.AddScoped<IAuthenticationProvider, AuthenticationService>();
 builder.Services.AddScoped<AuthenticationFilter>();
+builder.Services.AddScoped<IThemeProvider, ThemeService>();
+builder.Services.AddScoped<ThemeFilter>();
 builder.Services.AddSession();
 
 var app = builder.Build();

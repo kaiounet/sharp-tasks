@@ -6,6 +6,7 @@ using sharp_tasks.Mappers;
 
 namespace sharp_tasks.Controllers
 {
+    [TypeFilter(typeof(ThemeFilter))]
     public class AuthenticationController : Controller
     {
         private readonly IAuthenticationProvider _authenticationService;

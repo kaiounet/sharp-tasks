@@ -38,22 +38,22 @@
                         <span class="@stateClass">@stateText</span>
                     </td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <a href="@Url.Action("Edit", "Tasks", new { index = taskIndex })" class="btn btn-sm btn-primary"
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="@Url.Action("Edit", "Tasks", new { index = taskIndex })" class="btn btn-sm btn-primary d-flex align-items-center"
                                 title="Edit">
-                                <i class="bi bi-pencil"></i> Edit
+                                <i class="bi bi-pencil me-1"></i> Edit
                             </a>
 
                             <form asp-action="IncrementState" method="post" class="d-inline">
                                 <input type="hidden" name="index" value="@taskIndex" />
-                                <button type="submit" class="btn btn-sm btn-info" title="Advance State">
-                                    <i class="bi bi-arrow-right-circle"></i> Advance
+                                <button type="submit" class="btn btn-sm btn-info d-flex align-items-center" title="Advance State">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Advance
                                 </button>
                             </form>
 
-                            <button type="button" class="btn btn-sm btn-danger" title="Delete" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-sm btn-danger d-flex align-items-center" title="Delete" data-bs-toggle="modal"
                                 data-bs-target="#deleteModal-@taskIndex">
-                                <i class="bi bi-trash"></i> Delete
+                                <i class="bi bi-trash me-1"></i> Delete
                             </button>
                         </div>
                     </td>
