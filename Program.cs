@@ -4,13 +4,17 @@ using sharp_tasks.Filters;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<LoggingFilter>();
+});
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISessionManagerService, SessionManagerService>();
 builder.Services.AddScoped<IAuthenticationProvider, AuthenticationService>();
 builder.Services.AddScoped<AuthenticationFilter>();
 builder.Services.AddScoped<IThemeProvider, ThemeService>();
 builder.Services.AddScoped<ThemeFilter>();
+builder.Services.AddScoped<LoggingFilter>();
 builder.Services.AddSession();
 
 var app = builder.Build();

@@ -19,6 +19,7 @@ public class AuthenticationService : IAuthenticationProvider
         if (model.Username.Equals(new string(model.Password.Reverse().ToArray())))
         {
             _sessionManager.Add("isAuth", "");
+            _sessionManager.Add("username", model.Username);
             return true;
         }
 
@@ -33,5 +34,6 @@ public class AuthenticationService : IAuthenticationProvider
     public void Logout()
     {
         _sessionManager.Remove("isAuth");
+        _sessionManager.Remove("username");
     }
 }
