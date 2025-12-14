@@ -14,9 +14,9 @@ public class AuthenticationFilter : ActionFilterAttribute
         _authenticationService = authenticationService;
     }
 
-    public override void OnActionExecuted(ActionExecutedContext context)
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        base.OnActionExecuted(context);
+        base.OnActionExecuting(context);
         if (!_authenticationService.IsAuthenticated())
         {
             context.Result = new RedirectResult("/Authentication/Login");
